@@ -2,16 +2,17 @@ package com.newcoder.community.entity;
 
 import java.util.Date;
 
-public class Page {
-
+public class Comment {
     private int id;
     private int userId;
-    private String title;
+    private int entityId;
+    //评论实体类型：1 帖子评论、2 评论回复
+    private int entityType;
+    private int targetId;
     private String content;
-    private int type;
-    private int status;
+    //评论状态：0 有效、1 无效
+    private  int status;
     private Date createTime;
-    private double score;
 
     public int getId() {
         return id;
@@ -29,12 +30,28 @@ public class Page {
         this.userId = userId;
     }
 
-    public String getTitle() {
-        return title;
+    public int getEntityId() {
+        return entityId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setEntityId(int entityId) {
+        this.entityId = entityId;
+    }
+
+    public int getEntityType() {
+        return entityType;
+    }
+
+    public void setEntityType(int entityType) {
+        this.entityType = entityType;
+    }
+
+    public int getTargetId() {
+        return targetId;
+    }
+
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
     }
 
     public String getContent() {
@@ -43,14 +60,6 @@ public class Page {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
     public int getStatus() {
@@ -69,25 +78,17 @@ public class Page {
         this.createTime = createTime;
     }
 
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
-    }
-
     @Override
     public String toString() {
-        return "Page{" +
+        return "Comment{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", title='" + title + '\'' +
+                ", entityId=" + entityId +
+                ", entityType=" + entityType +
+                ", targetId=" + targetId +
                 ", content='" + content + '\'' +
-                ", type=" + type +
                 ", status=" + status +
                 ", createTime=" + createTime +
-                ", score=" + score +
                 '}';
     }
 }

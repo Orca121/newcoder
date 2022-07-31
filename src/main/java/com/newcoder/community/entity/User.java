@@ -8,7 +8,9 @@ public class User {
     private String password;
     private String salt;
     private String email;
+    //用户类型：0 普通、1 管理员、2 版主
     private int type;
+    //用户状态：0 未激活、1 已激活
     private int status;
     private String activationCode;
     private String headerUrl;

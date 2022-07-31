@@ -1,17 +1,16 @@
 package com.newcoder.community.entity;
 
-import java.util.Date;
-
-public class Page {
-
+public class DiscussPost {
     private int id;
     private int userId;
     private String title;
     private String content;
+    //帖子类型：0普通、1置顶
     private int type;
+    private int commentCount;
+    //帖子状态：0普通、1精华、2拉黑
     private int status;
-    private Date createTime;
-    private double score;
+    private int createTime;
 
     public int getId() {
         return id;
@@ -53,6 +52,14 @@ public class Page {
         this.type = type;
     }
 
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -61,33 +68,25 @@ public class Page {
         this.status = status;
     }
 
-    public Date getCreateTime() {
+    public int getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(int createTime) {
         this.createTime = createTime;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
     }
 
     @Override
     public String toString() {
-        return "Page{" +
+        return "DiscussPost{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", type=" + type +
+                ", commentCount=" + commentCount +
                 ", status=" + status +
                 ", createTime=" + createTime +
-                ", score=" + score +
                 '}';
     }
 }
