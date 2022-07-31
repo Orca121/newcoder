@@ -1,5 +1,7 @@
 package com.newcoder.community.entity;
 
+import java.util.Date;
+
 public class DiscussPost {
     private int id;
     private int userId;
@@ -10,7 +12,8 @@ public class DiscussPost {
     private int commentCount;
     //帖子状态：0普通、1精华、2拉黑
     private int status;
-    private int createTime;
+    private Date createTime;
+    private double score;
 
     public int getId() {
         return id;
@@ -68,12 +71,20 @@ public class DiscussPost {
         this.status = status;
     }
 
-    public int getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(int createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 
     @Override
@@ -87,6 +98,7 @@ public class DiscussPost {
                 ", commentCount=" + commentCount +
                 ", status=" + status +
                 ", createTime=" + createTime +
+                ", score=" + score +
                 '}';
     }
 }

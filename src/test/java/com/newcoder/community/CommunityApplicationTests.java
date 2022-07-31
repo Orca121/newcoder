@@ -18,6 +18,4 @@ import java.util.Date;
 @ContextConfiguration(classes = CommunityApplication.class)
 public class CommunityApplicationTests {
 
-
-
 }
