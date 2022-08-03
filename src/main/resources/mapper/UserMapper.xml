@@ -5,7 +5,7 @@
 <mapper namespace="com.newcoder.community.dao.UserMapper">
 
     <sql id="selectFields">
-        username, password, salt, email, type, status, activation_code, header_url, create_time
+        id, username, password, salt, email, type, status, activation_code, header_url, create_time
     </sql>
 
     <sql id="insertFields">
