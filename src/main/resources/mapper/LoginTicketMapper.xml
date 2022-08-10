@@ -13,14 +13,14 @@
     </sql>
 
     <select id="selectLoginTicket" resultType="com.newcoder.community.entity.LoginTicket">
-        select <include refid="selectFields"></include>
+        select <include refid="selectFields"/>
         from login_ticket
         where ticket = #{ticket}
     </select>
 
     <insert id="insertLoginTicket" parameterType="com.newcoder.community.entity.LoginTicket" keyProperty = "id">
         insert into login_ticket
-        (<include refid="insertFields"></include>)
+        (<include refid="insertFields"/>)
         values(#{userId},#{ticket},#{status},#{expired})
     </insert>
 

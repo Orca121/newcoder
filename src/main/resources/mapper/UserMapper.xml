@@ -13,26 +13,27 @@
     </sql>
 
     <select id = "selectById" resultType="com.newcoder.community.entity.User">
-        select <include refid="selectFields"></include>
+        select <include refid="selectFields"/>
         from user
         where id = #{id}
     </select>
 
     <select id="selectByName" resultType="com.newcoder.community.entity.User">
-        select <include refid="selectFields"></include>
+        select <include refid="selectFields"/>
         from user
         where username = #{username}
     </select>
 
     <select id="selectByEmail" resultType="com.newcoder.community.entity.User">
-        select <include refid="selectFields"></include>
+        select <include refid="selectFields"/>
         from user
         where email = #{email}
     </select>
 
+
     <insert id="insertUser" parameterType="com.newcoder.community.entity.User" keyProperty = "id">
         insert into user
-        (<include refid="insertFields"></include>)
+        (<include refid="insertFields"/>)
         values(#{username},#{password},#{salt},#{email},
         #{type},#{status},#{activationCode},#{headerUrl},#{createTime})
     </insert>
