@@ -18,7 +18,7 @@ public class KaptchaConfig {
         properties.setProperty("kaptcha.image.height","40");
         properties.setProperty("kaptcha.textproducer.font.size","32");
         properties.setProperty("kaptcha.textproducer.font.color","0,0,0");
-        properties.setProperty("kaptcha.textproducer.char.string","0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        properties.setProperty("kaptcha.textproducer.char.string","123456789ABCDEFGHIJKLMNPQRSTUVWXYZ");
         properties.setProperty("kaptcha.textproducer.char.length","4");
         properties.setProperty("kaptcha.noise.impl","com.google.code.kaptcha.impl.NoNoise");
 

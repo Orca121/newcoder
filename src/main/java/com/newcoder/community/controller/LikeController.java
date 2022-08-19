@@ -47,3 +47,5 @@ public class LikeController {
         return CommunityUtil.getJSONString(0, null,map);
     }
 }
+
+

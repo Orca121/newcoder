@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
+@Deprecated
 public interface LoginTicketMapper {
 
     LoginTicket selectLoginTicket(String ticket);
