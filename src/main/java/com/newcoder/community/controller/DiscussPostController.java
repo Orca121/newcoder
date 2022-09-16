@@ -54,8 +54,7 @@ public class DiscussPostController implements CommunityConstant {
         discussPost.setTitle(title);
         discussPost.setContent(content);
         discussPost.setCreateTime(new Date());
-        int i = discussPostService.addDiscussPost(discussPost);
-
+        discussPostService.addDiscussPost(discussPost);
 
         // 触发发帖事件
         Event event = new Event()
@@ -64,8 +63,6 @@ public class DiscussPostController implements CommunityConstant {
                 .setEntityType(ENTITY_TYPE_POST)
                 .setEntityId(discussPost.getId());
         eventProducer.fireEvent(event);
-        System.out.println("存入discusspost成功！");
-
 
         // 报错的情况,将来统一处理。
         return CommunityUtil.getJSONString(0,"发布成功！");
@@ -157,4 +154,69 @@ public class DiscussPostController implements CommunityConstant {
 
         return "/site/discuss-detail";
     }
+
+    // 置顶、取消置顶
+    @RequestMapping(path = "/top", method = RequestMethod.POST)
+    @ResponseBody
+    public String setTop(int id) {
+
+        DiscussPost discussPost = discussPostService.findDiscussPostById(id);
+        // 获取置顶状态, 1为置顶, 0为正常状态
+        int type = discussPost.getType()==0? 1: 0;
+        discussPostService.updateType(id, type);
+        // 返回的结果
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", type);
+
+        // 触发发帖事件(更改帖子状态)
+        Event event = new Event()
+                .setTopic(TOPIC_PUBLISH)
+                .setUserId(hostHolder.getUser().getId())
+                .setEntityType(ENTITY_TYPE_POST)
+                .setEntityId(id);
+        eventProducer.fireEvent(event);
+
+        return CommunityUtil.getJSONString(0, null, map);
+    }
+
+    // 加精、取消加精
+    @RequestMapping(path = "/wonderful", method = RequestMethod.POST)
+    @ResponseBody
+    public String setWonderful(int id) {
+
+        DiscussPost discussPostById = discussPostService.findDiscussPostById(id);
+        // 获取加精状态, 1为加精, 0为正常
+        int status = discussPostById.getStatus()==0? 1 : 0;
+        discussPostService.updateStatus(id, status);
+        // 返回的结果
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", status);
+
+        // 触发发帖事件(更改帖子类型)
+        Event event = new Event()
+                .setTopic(TOPIC_PUBLISH)
+                .setUserId(hostHolder.getUser().getId())
+                .setEntityType(ENTITY_TYPE_POST)
+                .setEntityId(id);
+        eventProducer.fireEvent(event);
+
+        return CommunityUtil.getJSONString(0, null, map);
+    }
+
+    // 删除
+    @RequestMapping(path = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public String setDelete(int id) {
+        discussPostService.updateStatus(id, 2);
+
+        Event event = new Event()
+                .setTopic(TOPIC_DELETE)
+                .setUserId(hostHolder.getUser().getId())
+                .setEntityType(ENTITY_TYPE_POST)
+                .setEntityId(id);
+        eventProducer.fireEvent(event);
+
+        return CommunityUtil.getJSONString(0);
+    }
+
 }

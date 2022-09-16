@@ -15,7 +15,6 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
@@ -28,17 +27,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
-import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -78,7 +73,22 @@ public class ElasticsearchTests {
     @Test
     public void testInsertList() {
         //把id为101的用户发的前100条帖子（List<DiscussPost>）存入es的discusspost索引（es的索引相当于数据库的表）
-        discussRepository.saveAll(discussMapper.selectDiscussPosts(101, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(101, 0, 50));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(102, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(103, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(11, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(111, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(112, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(131, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(132, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(133, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(134, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(138, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(145, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(146, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(149, 0, 100));
+        discussRepository.saveAll(discussMapper.selectDiscussPosts(151, 0, 100));
+
     }
 
     //通过覆盖原内容，来修改一条数据

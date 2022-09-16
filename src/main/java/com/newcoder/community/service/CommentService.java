@@ -2,7 +2,6 @@ package com.newcoder.community.service;
 
 import com.newcoder.community.dao.CommentMapper;
 import com.newcoder.community.entity.Comment;
-import com.newcoder.community.entity.DiscussPost;
 import com.newcoder.community.util.CommunityConstant;
 import com.newcoder.community.util.SensitiveFilter;
 import org.springframework.beans.factory.annotation.Autowired;

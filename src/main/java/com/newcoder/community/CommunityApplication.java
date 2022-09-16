@@ -10,7 +10,6 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class CommunityApplication {
 
-
     @PostConstruct
     public void init() {
         // 解决netty启动冲突问题
